@@ -25,6 +25,12 @@ class Kohana_Model_I18n extends ORM_Modeller_I18n {
     public function __toString()
     {
         $translation = $this->translations->where('language_id', '=', Modeller_I18n::language()->pk())->find();
+
+        if (empty($translation->value))
+        {
+            $translation = $this->translations->where('language_id', '=', Modeller_I18n::default_language()->pk())->find();
+        }
+
         return (empty($translation->value)) ? '' : $translation->value;
     }
 

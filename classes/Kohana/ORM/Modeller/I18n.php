@@ -8,6 +8,8 @@
  */
 class Kohana_ORM_Modeller_I18n extends ORM_Modeller {
 
+    const COLUMN_TYPE_I18N = 'i18n';
+
     /**
      * @var array I18n columns
      */
@@ -256,7 +258,7 @@ class Kohana_ORM_Modeller_I18n extends ORM_Modeller {
     public function editable_columns($full_info = FALSE)
     {
         // Get all editable columns
-        $editable_columns = parent::editable_columns();
+        /*$editable_columns = parent::editable_columns();
 
         // Get editable i18n columns
         $editablie_i18n = array_intersect(parent::editable_columns(), $this->i18n_columns());
@@ -273,7 +275,26 @@ class Kohana_ORM_Modeller_I18n extends ORM_Modeller {
         }
 
         // Return flattened array
-        return $this->_get_info(Arr::flatten($editable_columns), $this->list_columns(), $full_info, FALSE);
+        return $this->_get_info(Arr::flatten($editable_columns), $this->list_columns(), $full_info, FALSE);*/
+
+        return parent::editable_columns($full_info);
+    }
+
+    // -------------------------------------------------------------------------
+
+    /**
+     * Get the column type
+     *
+     * @return string
+     */
+    public function column_type($column)
+    {
+        if (in_array($column, $this->i18n_columns()))
+        {
+            return ORM_Modeller_I18n::COLUMN_TYPE_I18N;
+        }
+
+        return parent::column_type($column);
     }
 
     // -------------------------------------------------------------------------
