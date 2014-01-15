@@ -4,7 +4,7 @@
 
     <?php echo Form::input($column, $field->model()->$column, array_merge(array(
         'data-language' => $language->iso,
-        'style' => 'background-image: url("'.BASE_URL.'public/assets/imgs/flags/'.$language->iso.'.png");',
+        'style' => 'background-image: url("'.BASE_URL.'assets/imgs/flags/'.$language->iso.'.png");',
     ), $field->attributes(), array('class' => 'form-control form-control-18n'))); ?>
 
 <?php endforeach; ?>
